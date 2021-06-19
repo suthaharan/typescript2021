@@ -101,3 +101,98 @@ newVariable2 = "Welcome to my Club!";
 (newVariable2 as string).toUpperCase();
 console.log(newVariable2);
 ```
+
+* Type inference provides static type checking and provides intellisense. Type inference kicks in only if variables are declared and initialized on the same line
+```javascript
+let a;
+a=10;
+a=true; 
+let b=20;
+b=true; // will not work
+```
+
+* Union of types
+```javascript
+let myType : number | boolean;
+myType = 10;
+myType = true;
+```
+
+* Functions
+```javascript
+// simply multiply
+function multiply(a: number, b: number):number{
+    return a * b;
+}
+// Multiply with optional parameters
+function multiply2(a: number, b?: number):number{
+    if(b){
+        return a * b;
+    }else{
+        return a;
+    } 
+}
+// Multiply with default assignment
+function multiply3(a: number, b: number=10):number{
+    return a * b;
+}
+```
+
+* Interface
+```javascript
+interface employee{
+    name: string,
+    age: number
+}
+function currentEmployer(e: employee){
+    console.log(`${e.name} is age ${e.age}`)
+}
+
+let e ={ name: "Danny", age: 40 };
+currentEmployer(e);
+```
+* Classes
+```javascript
+class person{
+    name: string;
+    title: string;
+    constructor(n: string, t: string){
+        this.name = n;
+        this.title = t;
+    }
+    greet(){
+        console.log( `Welcome ${this.title}.${this.name}!` );
+    }
+}
+
+let p = new person('Van', 'Mr');
+let m = p.greet();
+
+// extending classing
+class customer extends person{
+    loyaltymember: boolean;
+    year: number;
+    constructor(n: string, t:string, l:boolean, y:number){
+        super(n,t);
+        this.loyaltymember = l;
+        this.year = y;
+    }
+    isLoyal(){
+        if(this.loyaltymember){
+            console.log(`${this.name} is a loyal member since ${this.year}`);
+        }else{
+            console.log(`${this.name} is not a loyal member`);
+        }
+    }
+}
+let c = new customer('Van', 'Mr', true, 1976);
+c.greet();
+c.isLoyal();
+
+```
+
+
+* Access class modifiers
+  * Public - free accessibility
+  * Private - accessibility in the class only
+  * Protected - accessibility in the class and its derived classes
